@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour
 
             //transform.position += new Vector3(moveInput.x * Time.deltaTime * moveSpeed, moveInput.y * Time.deltaTime * moveSpeed, 0f);
 
-            theRB.velocity = moveInput * activeMoveSpeed;
+            theRB.linearVelocity = moveInput * activeMoveSpeed;
 
             Vector3 mousePos = Input.mousePosition;
             Vector3 screenPoint = CameraController.instance.mainCamera.WorldToScreenPoint(transform.localPosition);
@@ -175,7 +175,7 @@ public class PlayerController : MonoBehaviour
             }
         } else
         {
-            theRB.velocity = Vector2.zero;
+            theRB.linearVelocity = Vector2.zero;
             anim.SetBool("isMoving", false);
         }
     }

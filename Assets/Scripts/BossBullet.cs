@@ -1,30 +1,42 @@
-﻿using System.Collections;
+﻿
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class BossBullet : MonoBehaviour
 {
+    // speed of bullet
     public float speed;
+
+    // direction of bullet
     private Vector3 direction;
 
-    // Start is called before the first frame update
+
+
     void Start()
     {
         //direction = PlayerController.instance.transform.position - transform.position;
         //direction.Normalize();
+
+        // set direction of bullet
         direction = transform.right;
     }
 
-    // Update is called once per frame
+
     void Update()
     {
+        // move bullet
         transform.position += direction * speed * Time.deltaTime;
 
-        if(!BossController.instance.gameObject.activeInHierarchy)
+        // if the boss has been defeated
+        if (!BossController.instance.gameObject.activeInHierarchy)
         {
+            // destroy the bullet
             Destroy(gameObject);
         }
     }
+
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -34,11 +46,17 @@ public class BossBullet : MonoBehaviour
         }
 
         Destroy(gameObject);
+
         AudioManager.instance.PlaySFX(4);
     }
 
+
+    // when the bullet goes out of view of the camera
     private void OnBecameInvisible()
     {
+        // destroy the bullet
         Destroy(gameObject);
     }
-}
+
+
+} // end of script

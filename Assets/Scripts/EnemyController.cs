@@ -131,7 +131,7 @@ public class EnemyController : MonoBehaviour
 
             moveDirection.Normalize();
 
-            theRB.velocity = moveDirection * moveSpeed;
+            theRB.linearVelocity = moveDirection * moveSpeed;
 
 
             if (shouldShoot && Vector3.Distance(transform.position, PlayerController.instance.transform.position) < shootRange)
@@ -149,7 +149,7 @@ public class EnemyController : MonoBehaviour
 
         } else
         {
-            theRB.velocity = Vector2.zero;
+            theRB.linearVelocity = Vector2.zero;
         }
 
         if (moveDirection != Vector3.zero)
